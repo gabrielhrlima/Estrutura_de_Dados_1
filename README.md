@@ -429,6 +429,8 @@ int separa_Cormem(int v[], int l, int r){
     return j; // retorna a posição do pivô
 }
 ```
+#### Complexidade
+
 ```c
 void quick_sort(int v[], int l, int r){
     if(r<=l) return;  
