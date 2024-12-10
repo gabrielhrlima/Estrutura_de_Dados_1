@@ -1,81 +1,6 @@
-# Estruturas de Dados e Algoritmos 01
-
-## Busca 
-
-### Busca sequencial
-
-- A `busca sequencial` tem a ideia de ir percorrendo um vetor seguinda uma ordem crescente até encontrar o elemento desejado.
-- Se encontrar ele retorna a ``posição do elemento``.
-- Se não encontrar ele retorna ``-1``
-
-```c
-#define key(A) (A.chave)
-typedef int Key; // tipo da chave
-typedef struct data Item; 
-struct data {char info[100];Key chave;};
-
-int busca_sequencial(Item *v, int l, int r, Key k){
-    for (int i = l; i <= r; i++)
-    {
-        if(k == key(v[i])) return i;
-    }
-    return -1;
-}
-```
-#### Complexidade
-
-| Análise       | Resultado ||
-|:--------------|:---------:|:-|
-| Melhor caso   | O(1)      |O primeiro elemento|
-| Pior caso     | O(n) - (n+1)   |Ultimo elemento|
-| Caso médio    | O(n) - (n+1)/2     |Mais ou menos a metade do vetor|
-| Pesquisa sem sucesso     | O(n) - (n+1)   ||
-| Listas encadeadas | O(n)      ||
-| Vetores não ordenados  | O(n)      ||
-| Vetores ordenados    | O(log(n))     ||
-
-
-### Busca Binária
-
-- A `busca binária` tem a ideia de receber um vetor ordendado e ir dividindo o vetor na metade, comparando o valor da chave do elemento desejado com o elemento do meio do vetor.
-- Funciona de forma recursiva, se a chave do elemento for menor que a chave do elemento do meio ele chama a busca binária para a porção a esquerda do meio e a mesma lógica se a chave for maior que o meio.
-- Se o elemento não for encontrado, retorna ``-1``.
-- Se o elemento for encontrado, retorna a ``posição do elemento``
-
-```c
-#define key(A) (A.chave)
-typedef int Key; // tipo da chave
-typedef struct data Item; 
-struct data {char info[100];Key chave;};
-
-int busca_binaria(Item *v, int l, int r, Key k){
-    if(l > r) return -1; // O elemento não foi encontrado
-    int m = (l + r)/2;
-    if( k == key(v[m])) return m; 
-    if(k < key(v[m])) return busca_binaria(v,l,m-1, k);
-    return busca_binaria(v,m+1,r, k);
-
-}
-
-
-```
-| **Análise**          | **Resultado**        | **Descrição**                                                                                                                                                                   |
-|:---------------------|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Melhor caso**      | \( O(1) \)           | Ocorre quando o elemento procurado está exatamente na posição do meio na primeira iteração.                                                                                   |
-| **Pior caso**        | \( O(\log_2(n)) \)   | Ocorre quando o algoritmo precisa dividir o vetor até que reste apenas um elemento (ou descubra que ele não está presente).                                                   |
-| **Caso médio**       | \( O(\log_2(n)) \)   | Em média, o elemento é encontrado após percorrer metade das divisões do vetor, mas a ordem de crescimento continua a mesma do pior caso.                                       |
-| **Pesquisa sem sucesso** | \( O(\log_2(n)) \)   | Semelhante ao pior caso, pois o algoritmo divide o vetor até não haver mais elementos no intervalo.                                                                           |
-| **Listas encadeadas** | \( O(n) \)          | A busca binária **não funciona eficientemente em listas encadeadas**, já que não há acesso direto ao elemento do meio (requer percorrer a lista até o índice desejado).       |
-| **Vetores não ordenados** | **Não aplicável** | A busca binária **não funciona** em vetores desordenados, pois a premissa básica do algoritmo é que o vetor esteja ordenado.                                                  |
-| **Vetores ordenados**   | \( O(\log_2(n)) \) | A busca binária é altamente eficiente em vetores ordenados devido ao acesso direto ao elemento do meio e ao particionamento constante.                                        |
-
-
-
-
-## Algoritmos de Ordenação
-
-### Algoritmos de Ordenação Elementar
-### Selection Sort
+# Algoritmos de Ordenação
+## Algoritmos de Ordenação Elementar
+## Selection Sort
 
 - O `selection_sort` é um algoritmo que tenta achar o elemento baseado na posição ("eu tenho uma posição e quero achar o valor que vai preencher essa posição").  
 - É composto por dois `for`: o primeiro (`i`) é o responsável por marcar qual a posição que vai ser colocada o menor elemento. O segundo `for` (`j`) é quem vai percorrer o vetor a partir da posição (`i`).
@@ -94,7 +19,7 @@ void selection_sort(int v[], int l, int r) {
 }
 ```
 
-#### Complexidade
+### Complexidade
 ```c
 void selection_sort(int v[], int l, int r) {
     
@@ -122,7 +47,7 @@ Função custo = f(n) = (n^2)/2 + n
 |Função custo | _f(n) =_ n<sup>2</sup>/2|
 
 
-### Bubble Sort
+## Bubble Sort
 - O `bubble_sort` é um algoritmo de ordenação que tem a intenção de achar o maior elemento do vetor e posicionar ele na posição mais a direita.
 - Depois de achar o elemento mais a direira ele faz um ``r--``.
 - É um pouco melhor que o selection_sort porque ele pode avaliar se o vetor já está ordenado.
@@ -145,7 +70,7 @@ void bubble_sort(int v[], int l, int r){
 }
 ```
 
-#### Complexidade
+### Complexidade
 
 ```c
 void bubble_sort(int v[], int l, int r){
@@ -179,7 +104,7 @@ Função custo = f(n) = n^2/2 + n^2/2 + n
 | É in-place    | Sim       ||
 |Função custo | _f(n) =_ n<sup>2</sup>/2 +n|
 
-### Insertion Sort 
+## Insertion Sort 
 
 - O `insertion_sort` é um algoritmo que tem como maior característica ordenar todos os elementos a esquerda do elemento que está sendo verificado.
 - Sempre que `i` é incrementado `j` posiciona i na posição correta, dessa forma ele mantem a ordenação, como ele realiza uma comparação com o imediatamente menor ele vai "abrindo espaço" para poder alocar o elemento selecionado na posição correta.
@@ -209,7 +134,7 @@ void insertion_sort(int *v, int l, int r){
     }
 }
 ```
-#### Complexidade
+### Complexidade
 ```c
 void insertion_sort(int v[], int l, int r){
     int elem, i, j; 
@@ -245,7 +170,7 @@ f (n) ≈ f(**n−1**)``+n−1``
 | É in-place    | Sim       ||
 |Função custo | _f(n) =_ n<sup>2</sup>/2|
 
-### Shell Sort
+## Shell Sort
 
 - O ``shell_sort`` é um algoritmo baseado no `insertion_sort`, ele funciona com a mesma ideia, mas com a diferença que ele ordena os elemento em uma distancia ``h`` que é definida anteriormente.
 - A cada cilco completo pelo vetor, o h é diminuido e começa tudo novamente, dessa forma o vetor vai ficando cada vez mais ordenado, até chegar em um ponto que h é igual a 1 e se torna um insertion_sort.
@@ -275,7 +200,7 @@ void shell_sort(int *v, int l, int r){
     }
 }
 ```
-#### Complexidade
+### Complexidade
 * O `shell_sort` é muito sensível a entrada.
 * Foram tirados dados de forma empírica mas não existe uma prova matemática que prove a complexidade do shell_sort
 
@@ -292,10 +217,10 @@ void shell_sort(int *v, int l, int r){
 | É estável     | Não     ||
 | É in-place    | Sim       ||
 
-### Algoritmos de Ordenação Eficientes
+## Algoritmos de Ordenação Eficientes
 - *Linearítmicos* - O(nlog(n)) - melhor custo quando a ordenação é feita pelo velor da chave.
 - *Linear* - O(n) - melhor custo quando a comparação é feita na estrutura da chave.
-### Merge Sort
+## Merge Sort
 - Método da divisão e conquista, ordena duas partes menores e realiza a junção.
 - Esse algoritmo é composto por duas funções, o `merge_sort` que divide o vetor em subvetores e o `merge` que intercala os dois subvetores de forma ordenada
 - **Abordagem _Top-Down_**
@@ -335,7 +260,7 @@ void merge(int v[], int l, int r, int m){
     free(v2);
 }
 ```
-#### Complexidade
+### Complexidade
 ```c
 void merge_sort(int v[], int l, int r){
     if(l>=r) return ;
@@ -381,7 +306,7 @@ void merge(int v[], int l, int r, int m){
 | É estável     | Sim       ||
 | É in-place    | Não       ||
 
-### Quick Sort
+## Quick Sort
 - O ``quick_sort ``um dos algoritmos de ordenação mais utilizados e estudados.
 - Método dividir e conquistar, ``particiona`` em subvetores menores e ordena eles de forma independente.
 - Escolhe um elemento ``pivô`` e organiza o vetor de forma que todos os elementos menores que ele fique a esquerda do pivô e todos os elementos maiores que ele fiquem a direita.
@@ -429,6 +354,8 @@ int separa_Cormem(int v[], int l, int r){
     return j; // retorna a posição do pivô
 }
 ```
+### Complexidade
+
 ```c
 void quick_sort(int v[], int l, int r){
     if(r<=l) return;  
