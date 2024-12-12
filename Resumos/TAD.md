@@ -2,7 +2,7 @@
 
 São interfaces, não necessariamente quem vai usar precisa saber como é construido, mas a execução deve ser o que ela fala(fila, pilha, árvore)
 
-## Filas
+## Filas (FIFO)
 
 Uma fila é uma sequencia de dados, onde o primeiro dado a entrar será o primeiro a ser processado (FIFO- Firt In First Out). Pode tanto ser usado em listas encadeadas como em arrays, o único critério é organizar de forma que o primeiro seja porcessado primeiro.
 
@@ -22,7 +22,7 @@ As inserções acontecem no fim e as remoções acontecem no início.
 `enfileirar`  
 `desenfileirar`
 
-## Implementação em Lista Estática
+### <u>**Implementação em Lista Estática**</u>
 ### Operações constantes  
 `inserção e remoção`
 
@@ -30,6 +30,36 @@ Para manter a complexidade constante é necessária duas variáveis auxiliares p
 
 O problema--> não dá pra usar uma biblioteca, dessa forma só seria possível usar uma fila, uma ideia pra poder implementar seria usando structs
 
-## Implementação em Lista Encadeadas
+### <u>**Implementação em Lista Encadeada**</u>
 
 A implementação em tempo constante é necessário  o acesso ao primeiro e o último elemento.
+
+
+## Pilhas (LIFO)
+
+A idea da pilha é que a primero item a entrar é o ultimo a ser processado, é a mesma ideia que é usada para realizar chamadas recursivas. A pilha segue o modelo (Last In First Out)
+
+### Operações na pilha
+``criar``  
+``vazia``  
+``empilhar``  
+``desempilhar``  
+``espiar``  
+
+### Prolblemas que podem ser revolvidos com pilhas
+``refazer ou desfazer alguma coisa``  
+``histórico dos navegadores``  
+``recursão``    
+``busca em profundidade``  
+``backtracking``  
+``inversão de string``  
+``balanceamento de simbolos``  
+``ìdentificador de expressões``  
+
+### <u>**Implementação em Lista Estática**</u>
+
+Assim como na fila, a pilha em listas estáticas dependem de variáveis auxiliares para marcar qual a posição que está o último elemento adicionado na pilha. Quando acontece uma remoção o elemento não é realmente removido mas a posição onde ele estava fica disponível para ser sobreescrita.
+
+### <u>**Implementação em Lista Encadeada**</u>
+
+Nas lista encadeadas a pilha funciona como uma remoção e adição sempre do início da lista, não é necessário a cabeça ter um ponteiro pra o ultimo elemento da lista.
