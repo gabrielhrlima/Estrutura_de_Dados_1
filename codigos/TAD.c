@@ -161,8 +161,37 @@ Item desempilhar_s(cabeca_s *pilha)
         return valor;   
     }
 }
+//======================== PILHA COM ARRAY=================================================
+#define TAM 10
 
+Item pilha[TAM];
+int topo;
 
+// criar pilha com lista estática
+void criar_pilha_etc()
+{
+    topo = 0;
+}
+
+void empilha_etc(Item x){
+    if (topo < TAM)
+    {
+    pilha[topo++]=x;
+    }else{
+        printf("Pilha cheia!\n");
+    }
+    printf("Topo :%d\n",topo);
+    
+}
+Item desempilhar_etc(){
+printf("Topo :%d\n",topo - 1);
+    if (topo>0)
+    {
+        return pilha[--topo];
+    }else{
+        printf("Pilha vazia!\n");
+    }
+}
 
 int main(int argc, char const *argv[])
 {
@@ -233,7 +262,35 @@ int main(int argc, char const *argv[])
     // imprime_lista_s(pilha);
     // liberar_lista_s(pilha);
 
-
+    criar_pilha_etc();
+    desempilhar_etc();
+    empilha_etc(a);
+    empilha_etc(b);
+    empilha_etc(c);
+    empilha_etc(d);
+    empilha_etc(e);
+    empilha_etc(f);
+    empilha_etc(g);
+    empilha_etc(h);
+    empilha_etc(i);
+    empilha_etc(j);
+    // empilha_etc(k);
+    printf("Antes\nPilha: [");
+    for (int i = 0; i < TAM; i++)
+    {
+        printf("%d -", pilha[i]);
+    }
+        printf("]\n");
+    desempilhar_etc();
+    desempilhar_etc();
+    desempilhar_etc();
+    printf("Depois\nPilha: [");
+    for (int i = 0; i < TAM; i++)
+    {
+        printf("%d -", pilha[i]);
+    }
+        printf("]\n");
+     printf("Topo final: %d\n", topo);
 
     return 0;
 }
