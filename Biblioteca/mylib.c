@@ -8,6 +8,7 @@
 #define lesseq(A,B) (key(A)<=key(B))
 #define swap(A,B) {int t =A; A=B; B=t;}
 #define compswap(A,B) if(less(A,B)) swap(A, B)
+#define TAM 10
 
 
 
@@ -146,6 +147,3 @@ void imprime_Vetor(int v[], int tam ){
     }
     printf("]\n");
 }
-
-
-

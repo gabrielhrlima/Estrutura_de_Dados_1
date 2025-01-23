@@ -3,8 +3,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+// gcc codigos/SEI_LA.c Biblioteca/mylib.c -o a
 typedef int Item; 
+// MACROS
+#define key(A) (A)
+#define less(A,B) (key(A) < key(B))
+#define lesseq(A,B) (key(A)<=key(B))
+#define swap(A,B) {int t =A; A=B; B=t;}
+#define compswap(A,B) if(less(A,B)) swap(A, B)
+#define TAM 10
 
 // Estruturas para lista duplamente encadeada
 typedef struct node_d {
