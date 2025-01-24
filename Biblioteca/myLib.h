@@ -54,5 +54,21 @@ void imprime_lista_s(cabeca_s *lista);
 void imprime_vetor(int v[],int l, int r);
 void imprime_Vetor(int v[], int tam );
 
+// modelo básico de todos os vetores
+typedef struct FilaPrioridades
+{
+    Item* v; // array que vai ser criada a fila
+    int N; // quantidade de elementos dentro da fila 
+    int maxN; //Capacidade maxima da fila
+}PQ;
+
+Item PQremove(PQ* pq);
+void fixDown(PQ *pq);
+void PQinsert(PQ *pq, Item x);
+void fixUp(PQ *pq);
+int PQempty(PQ *fila);
+void libera_pq(PQ *fila);
+PQ *PQinit(int maxN);
+void imprime_pq(PQ *pq);
 
 #endif // MYLIB_H

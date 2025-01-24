@@ -147,3 +147,94 @@ void imprime_Vetor(int v[], int tam ){
     }
     printf("]\n");
 }
+
+//FUNÇÕES PARA FILAS DE PRIORIDADES
+
+
+void imprime_pq(PQ *pq) {
+    printf("FILA: [");
+    for (int i = 0; i <= pq->N; i++) {
+        printf("%d-", pq->v[i]);
+    }
+    printf("]\n");
+
+}
+// INICIALIZADOR DA FILA 
+
+PQ *PQinit(int maxN){
+    PQ *pq = malloc(sizeof(PQ));
+    pq->v = malloc(sizeof(Item)*(maxN+1));
+    pq->N = 0;
+    pq->maxN = maxN;
+    return pq;
+}
+
+//FUNÇÃO PARA LIBERAR A FILA DA MEMÓRIA
+void libera_pq(PQ *fila){
+    free(fila->v);
+    free(fila);
+}
+
+//FUNÇÃO PARA VERIFICAR SE UMA FILA ESTÁ VAZIA 
+int PQempty(PQ *fila){
+    return fila->N == 0;
+}
+
+void fixUp(PQ *pq){
+    printf("FixUP\n");
+    imprime_pq(pq);
+    int k = pq->N;
+    while (k>1 && less(pq->v[k/2], pq->v[k]))
+    {
+        swap(pq->v[k], pq->v[k/2]);
+        imprime_pq(pq);
+        k /=2;
+    }
+}
+
+// FUNÇÃO PARA INSERIR NA FILA 
+void PQinsert(PQ *pq, Item x){
+    if(pq->N >= pq->maxN){
+        printf("Fila Cheia!\n");
+        return;
+    }
+    pq->v[++pq->N] = x;
+
+    fixUp(pq);
+
+}
+
+void fixDown(PQ *pq){
+    int k =1;
+    while (2*k <= pq->N)
+    {
+        //primeiro passo é encontrar o maior filho
+        int j = 2*k; //filho a esquerda
+        // se o elemento da direita for o maior??
+        if (j<pq->N && less(pq->v[j], pq->v[j+1])) j++;
+        
+        //se o pai for menor q o filho tem q trocar 
+//                   pai       filho
+        if (less(pq->v[k], pq->v[j])) 
+        {
+        swap(pq->v[k], pq->v[j]);
+        }else{
+            break;
+        }
+        //atualizando: o filho vira o novo pai
+        k= j;
+    }
+}
+
+Item PQremove(PQ* pq) {
+    if (PQempty(pq)) {
+        printf("Fila vazia!\n");
+        return -1; // Valor inválido
+    }
+    Item max = pq->v[1]; // Maior elemento
+    swap(pq->v[1], pq->v[pq->N]); // Troca com o último elemento
+    pq->N--; // Reduz o tamanho da fila
+    fixDown(pq); // Reorganiza a heap
+    printf("O item liberado foi: %d\n", max);
+    return max; // Retorna o maior elemento
+}
