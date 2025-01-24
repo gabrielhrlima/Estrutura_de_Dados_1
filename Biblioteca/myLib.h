@@ -71,4 +71,25 @@ void libera_pq(PQ *fila);
 PQ *PQinit(int maxN);
 void imprime_pq(PQ *pq);
 
+
+// Inicializa a fila de prioridade com um tamanho máximo
+void PQinit_a(int maxN);
+
+// Verifica se a fila de prioridade está vazia
+int PQempty_a(void);
+
+// Insere um item na fila de prioridade
+void PQinsert_a(Item x);
+
+// Remove e retorna o maior item da fila de prioridade
+Item PQremove_a(void);
+
+// Ajusta a posição de um item para cima no heap
+void fixUp_a(int k);
+
+// Ajusta a posição de um item para baixo no heap
+void fixDown_a(int k, int n);
+
+void imprimepq();
+
 #endif // MYLIB_H

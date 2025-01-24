@@ -238,3 +238,70 @@ Item PQremove(PQ* pq) {
     printf("O item liberado foi: %d\n", max);
     return max; // Retorna o maior elemento
 }
+
+
+static Item *pq; // Ponteiro para o heap
+static int N;    // Tamanho atual da fila
+
+void PQinit_a(int maxN) {
+    pq = malloc(sizeof(Item) * (maxN + 1));
+    if (!pq) {
+        printf("Erro ao alocar memória!\n");
+        exit(1);
+    }
+    N = 0;
+}
+
+int PQempty_a(void) {
+    return N == 0;
+}
+
+void fixUp_a(int k) {
+    // printf("FixUp:\n");
+    // imprime_Vetor(pq, N + 1);
+    while (k > 1 && less(pq[k / 2], pq[k])) {
+        swap(pq[k], pq[k / 2]);
+        k /= 2;
+        // imprime_Vetor(pq, N + 1);
+    }
+}
+
+void PQinsert_a(Item x) {
+    pq[++N] = x;
+    printf("Insert %d\n", x);
+    fixUp_a(N);
+}
+
+void fixDown_a(int k, int n) {
+    // printf("FixDown:\n");
+    // imprime_Vetor(pq, N + 1);
+    while (k * 2 <= n) {
+        int j = k * 2; // Filho esquerdo
+        if (j < n && less(pq[j], pq[j + 1]))
+            j++; // Filho direito é maior
+
+        if (!less(pq[k], pq[j]))
+            break;
+
+        swap(pq[k], pq[j]);
+        k = j;
+        // imprime_Vetor(pq, N + 1);
+    }
+    
+}
+
+Item PQremove_a(void) {
+    if (!PQempty_a()) {
+        swap(pq[1], pq[N]);
+        fixDown_a(1, N - 1);
+        printf("O item liberado foi: %d\n", pq[N]);
+        return pq[N--];
+    }
+
+    printf("Fila vazia!\n");
+    return -1; // Valor inválido
+}
+
+void imprimepq(){
+    imprime_Vetor(pq, TAM+1);
+}
