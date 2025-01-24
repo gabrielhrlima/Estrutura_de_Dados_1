@@ -15,16 +15,16 @@ Os algoritmos de ordenação servem para ordenar uma lista de dados, sendo eles 
 */
 
 
-void imprime_vetor(int v[],int l, int r){
-    printf("{");
-    for (int i = l; i <= r; i++)
-    {
-    printf("%d ", v[i]);
+// void imprime_vetor(int v[],int l, int r){
+//     printf("{");
+//     for (int i = l; i <= r; i++)
+//     {
+//     printf("%d ", v[i]);
         
-    }
-    printf("}\n");
+//     }
+//     printf("}\n");
     
-}
+// }
 
 void selection_sort(int v[], int l, int r){
     // O selectio_sort é um algotmo que tenta achar o elemento baseado na posição ("eu tenho uma posição e quero achar o valor que vai preeencher essa posição")
