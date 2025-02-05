@@ -30,3 +30,15 @@ void fixDown_b(Item *v,int k, int n){
     }
 }
 ```
+#### Complexidade
+O(n log<sub>2</sub>(n)), em todos os caos
+
+| Análise       | Resultado |
+|:--------------|:---------:|
+| Melhor caso   | O(n log<sub>2</sub>(n))   |
+| Pior caso     |  O(n log<sub>2</sub>(n)) |
+| Caso médio    | O(n log<sub>2</sub>(n))   |
+| É adaptativo  | Não       |
+| É estável     | Não       |
+| É in-place    | Sim       |
+|Função custo | *f(n)* = n log n|
