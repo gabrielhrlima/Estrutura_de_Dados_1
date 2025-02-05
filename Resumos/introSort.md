@@ -29,3 +29,14 @@ void intro_sort(Item *v, int l, int r){
     insertion_sort(v,l,r);
 }
 ```
+
+#### Complexidade
+| Análise       | Resultado |
+|:--------------|:---------:|
+| Melhor caso   | O(n log<sub>2</sub>(n))   |
+| Pior caso     |  O(n log<sub>2</sub>(n)) |
+| Caso médio    | O(n log<sub>2</sub>(n))   |
+| É adaptativo  | Não       |
+| É estável     | Não       |
+| É in-place    | Sim       |
+|Função custo | *f(n)* = n log n|
